@@ -1,19 +1,38 @@
 package ru.abnod.todolist.beans;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Created by Abnod on 1/15/2017.
  */
-public class Task {
+@Entity
+@Table(name = "test")
+public class Task implements Serializable{
 
-    private String task;
-    private boolean deleted;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private int id;
+    @Column(name = "task")
+    private String task="";
+    @Column(name = "isDeleted")
+    private int deleted=0;
 
     public Task() {
     }
 
-    public Task(String task, boolean deleted) {
-        this.task = task;
-        this.deleted = deleted;
+    public Task(String task,int deleted) {
+        this.task=task;
+        this.deleted=deleted;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTask() {
@@ -24,11 +43,20 @@ public class Task {
         this.task = task;
     }
 
-    public boolean isDeleted() {
+    public int getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(int deleted) {
         this.deleted = deleted;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", task='" + task + '\'' +
+                ", deleted=" + deleted +
+                '}';
     }
 }
