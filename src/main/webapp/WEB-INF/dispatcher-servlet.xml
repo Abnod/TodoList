@@ -7,6 +7,9 @@
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc.xsd">
 
+    <mvc:annotation-driven/>
     <context:component-scan base-package="ru.abnod.todolist.web"/>
+    <mvc:resources mapping="/resouces/**" location="/resources/"/>
+
 
 </beans>
