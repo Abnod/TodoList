@@ -1,4 +1,4 @@
-package ru.abnod.todolist.beans;
+package ru.abnod.todolist.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
