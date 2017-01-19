@@ -11,6 +11,7 @@ public interface TaskDao {
 
     public void createTask(Task task);
     public void deleteTask(Task task);
-    public List<Task> getTasksByCompl(int completion);
+    public List<Task> getTasks();
     public void editTask(Task task);
+
 }
