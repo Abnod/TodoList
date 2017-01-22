@@ -1,6 +1,7 @@
 package ru.abnod.todolist.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class HibernateController {
         return "tasks_List";
     }
 
-    @RequestMapping (value = "/tasks_List_done", method = RequestMethod.GET)
+    @RequestMapping (value = "/tasks_List_Completed", method = RequestMethod.GET)
     public String getCompleted(Model model){
         List<Task>sorted=new ArrayList<Task>();
 
@@ -43,7 +44,7 @@ public class HibernateController {
         return "tasks_List_Completed";
     }
 
-    @RequestMapping (value = "/tasks_List_undone", method = RequestMethod.GET)
+    @RequestMapping (value = "/tasks_List_Active", method = RequestMethod.GET)
     public String getActive(Model model){
         List<Task>sorted=new ArrayList<Task>();
 
@@ -83,7 +84,7 @@ public class HibernateController {
         return "task_deleted_notification";
     }
 
-    @RequestMapping (value = "/complete_task", method = RequestMethod.POST)
+    @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
     public String setCompleted(@RequestParam (value = "id") Integer id, Model model)
     {
         Task task=hibernateService.getTask(id);
