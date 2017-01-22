@@ -40,7 +40,7 @@
             <td height="50px" width="100px">
                 <c:choose>
                     <c:when test="${task.done==1}">
-                        <input type="image" src="/resources/affirmative-156538_960_720.png" style="width: 50px;height: 50px;"/>
+                        <input type="image" src="/resources/affirmative-156538_960_720.png" style="width: 40px;height: 40px;"/>
                     </c:when>
                 </c:choose>
             </td>
