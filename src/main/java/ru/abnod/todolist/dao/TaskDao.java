@@ -4,14 +4,13 @@ import ru.abnod.todolist.model.Task;
 
 import java.util.List;
 
-/**
- * Created by Oleg on 17.01.2017.
- */
 public interface TaskDao {
 
-    public void createTask(Task task);
-    public void deleteTask(Task task);
-    public List<Task> getTasks();
-    public void editTask(Task task);
+    void createTask(Task task);
+    void deleteTask(int id);
+    List<Task> getTasks();
+    void editTask(Task task);
+    void markDone(Task task);
+    Task getTask(int id);
 
 }

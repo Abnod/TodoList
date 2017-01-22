@@ -3,9 +3,6 @@ package ru.abnod.todolist.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by Abnod on 1/15/2017.
- */
 @Entity
 @Table(name = "test")
 public class Task implements Serializable{
@@ -17,14 +14,14 @@ public class Task implements Serializable{
     @Column(name = "task")
     private String task="";
     @Column(name = "isDeleted")
-    private int deleted=0;
+    private int done =0; //0-active, 1-completed;
 
     public Task() {
     }
 
-    public Task(String task,int deleted) {
+    public Task(String task,int done) {
         this.task=task;
-        this.deleted=deleted;
+        this.done = done;
     }
 
     public int getId() {
@@ -43,12 +40,12 @@ public class Task implements Serializable{
         this.task = task;
     }
 
-    public int getDeleted() {
-        return deleted;
+    public int getDone() {
+        return done;
     }
 
-    public void setDeleted(int deleted) {
-        this.deleted = deleted;
+    public void setDone(int done) {
+        this.done = done;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class Task implements Serializable{
         return "Task{" +
                 "id=" + id +
                 ", task='" + task + '\'' +
-                ", deleted=" + deleted +
+                ", deleted=" + done +
                 '}';
     }
 }
