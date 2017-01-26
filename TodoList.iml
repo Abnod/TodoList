@@ -66,5 +66,15 @@
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:jsp-api:2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.zk:zkbind:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.zk:zul:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.zk:zk:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.common:zweb:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.common:zcommon:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.common:zel:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.beanshell:bsh:2.0b4" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.zk:zkplus:6.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zkoss.zk:zhtml:6.5.2" level="project" />
   </component>
 </module>
