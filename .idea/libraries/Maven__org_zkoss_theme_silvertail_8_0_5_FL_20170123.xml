@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.zkoss.theme:silvertail:8.0.5.FL.20170123">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/zkoss/theme/silvertail/8.0.5.FL.20170123/silvertail-8.0.5.FL.20170123.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/zkoss/theme/silvertail/8.0.5.FL.20170123/silvertail-8.0.5.FL.20170123-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/zkoss/theme/silvertail/8.0.5.FL.20170123/silvertail-8.0.5.FL.20170123-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
