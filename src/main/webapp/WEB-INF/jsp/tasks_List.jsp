@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<base href="${pageContext.request.contextPath}">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,7 +35,7 @@
             <td height="50px" width="100px">
                 <c:choose>
                     <c:when test="${task.done==1}">
-                        <input type="image" src="/resources/affirmative-156538_960_720.png" style="width: 40px;height: 40px;"/>
+                        <input type="image" src="${pageContext.request.contextPath}/resources/affirmative-156538_960_720.png" style="width: 40px;height: 40px;"/>
                     </c:when>
                 </c:choose>
             </td>

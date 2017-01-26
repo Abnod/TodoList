@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
   User: ganer
@@ -15,7 +15,7 @@
 <body>
 <h1>TODO List Updated</h1>
 <p>You have added a new task</p>
-<c:url var="mainUrl" value="/" />
+<c:url var="mainUrl" value="/"/>
 <p>Return to <a href="${mainUrl}">TODO List</a></p>
 </body>
 </html>
