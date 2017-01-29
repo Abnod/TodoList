@@ -68,11 +68,11 @@ public class HibernateController {
     }
 
     @RequestMapping (value = "/add_task", method = RequestMethod.POST)
-    public String add(@ModelAttribute("taskAttribute") Task task)
+    public String add(@ModelAttribute("taskAttribute") Task task, Model model)
     {
         hibernateService.createTask(task);
 
-        return "task_added_notification";
+        return getTasks(model);
     }
 
     @RequestMapping (value = "/delete_task", method = RequestMethod.GET)
@@ -81,7 +81,7 @@ public class HibernateController {
         hibernateService.deleteTask(id);
         model.addAttribute("id",id);
 
-        return "task_deleted_notification";
+        return getTasks(model);
     }
 
     @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
@@ -90,7 +90,7 @@ public class HibernateController {
         Task task=hibernateService.getTask(id);
         hibernateService.markDone(task);
 
-        return "task_completed_notification";
+        return getTasks(model);
     }
 
     @RequestMapping (value = "/edit_task", method = RequestMethod.GET)
@@ -108,6 +108,6 @@ public class HibernateController {
         hibernateService.editTask(task);
         model.addAttribute("id", id);
 
-        return "task_edited_notification";
+        return getTasks(model);
     }
 }
