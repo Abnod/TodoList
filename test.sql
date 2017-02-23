@@ -30,7 +30,7 @@ CREATE TABLE `test` (
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,'Что то сдлать',0),(2,'Еще что то сделать',0),(3,'Уже сделано',1),(5,'test insert2',1),(6,'test insert',0);
+INSERT INTO `test` VALUES (3,'Уже сделано',1),(9,'Hello',1),(14,'test new',1),(19,'dedede',1),(26,'aadsd',0),(27,'hello world',0),(30,'new tasker',0),(31,'dered',0),(32,'how are you',0),(33,'babyboy',0),(34,'azazaz',1);
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-15 20:52:52
+-- Dump completed on 2017-02-23 20:10:09
