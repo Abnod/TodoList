@@ -1,10 +1,8 @@
 package ru.abnod.todolist.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ru.abnod.todolist.dao.TaskDao;
 import ru.abnod.todolist.model.Task;
 
@@ -29,8 +27,18 @@ public class HibernateService {
     }
 
     @Transactional
-    public List<Task> getTasks(){
-        return taskDao.getTasks();
+    public List<Task> getTasks(int pageNumber){
+        return taskDao.getTasks(pageNumber);
+    }
+
+    @Transactional
+    public List<Task> getActiveTasks(int pageNumber){
+        return taskDao.getActiveTasks(pageNumber);
+    }
+
+    @Transactional
+    public List<Task> getCompletedTasks(int pageNumber){
+        return taskDao.getCompletedTasks(pageNumber);
     }
 
     @Transactional
@@ -43,5 +51,15 @@ public class HibernateService {
 
     @Transactional
     public Task getTask(int id){return taskDao.getTask(id);}
+
+    @Transactional
+    public int getPages(){return taskDao.getPages();}
+
+    @Transactional
+    public int getCompletedPages(){return taskDao.getCompletedPages();}
+
+    @Transactional
+    public int getActivePages(){return taskDao.getActivePages();}
+
 
 }

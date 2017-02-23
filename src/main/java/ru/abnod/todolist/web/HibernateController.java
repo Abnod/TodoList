@@ -1,7 +1,6 @@
 package ru.abnod.todolist.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,40 +20,38 @@ public class HibernateController {
     @Resource(name = "hibernateService")
     private HibernateService hibernateService;
 
-    @RequestMapping (value = "/", method = RequestMethod.GET)
-    public String getTasks(Model model){
-        List<Task> tasks=hibernateService.getTasks();
+    @RequestMapping (value = {"/", "/tasks_List"}, method = RequestMethod.GET)
+    public String getTasks(@RequestParam(required = false) Integer page, Model model){
+        int pages=(int)Math.ceil(hibernateService.getPages()/5.0);
+        if(page==null || page < 1 || page > pages) page = 1;
+        List<Task> tasks=hibernateService.getTasks(page);
+        model.addAttribute("pages",pages);
         model.addAttribute("tasks",tasks);
+        model.addAttribute("page", page);
 
         return "tasks_List";
     }
 
     @RequestMapping (value = "/tasks_List_Completed", method = RequestMethod.GET)
-    public String getCompleted(Model model){
-        List<Task>sorted=new ArrayList<Task>();
-
-        for (Task task:hibernateService.getTasks()){
-            if(task.getDone()==1){
-                sorted.add(task);
-            }
-        }
-
-        model.addAttribute("tasks", sorted);
+    public String getCompleted(@RequestParam(required = false) Integer page, Model model){
+        int pages=(int)Math.ceil(hibernateService.getCompletedPages()/5.0);
+        if(page==null || page < 1 || page > pages) page = 1;
+        List<Task>sorted=hibernateService.getCompletedTasks(page);
+        model.addAttribute("pages",pages);
+        model.addAttribute("tasks",sorted);
+        model.addAttribute("page", page);
 
         return "tasks_List_Completed";
     }
 
     @RequestMapping (value = "/tasks_List_Active", method = RequestMethod.GET)
-    public String getActive(Model model){
-        List<Task>sorted=new ArrayList<Task>();
-
-        for (Task task:hibernateService.getTasks()){
-            if(task.getDone()==0){
-                sorted.add(task);
-            }
-        }
-
-        model.addAttribute("tasks", sorted);
+    public String getActive(@RequestParam(required = false) Integer page, Model model){
+        int pages=(int)Math.ceil(hibernateService.getActivePages()/5.0);
+        if(page==null || page < 1 || page > pages) page = 1;
+        List<Task>sorted=hibernateService.getActiveTasks(page);
+        model.addAttribute("pages",pages);
+        model.addAttribute("tasks",sorted);
+        model.addAttribute("page", page);
 
         return "tasks_List_Active";
     }
@@ -72,7 +69,7 @@ public class HibernateController {
     {
         hibernateService.createTask(task);
 
-        return getTasks(model);
+        return getTasks(1,model);
     }
 
     @RequestMapping (value = "/delete_task", method = RequestMethod.GET)
@@ -81,7 +78,7 @@ public class HibernateController {
         hibernateService.deleteTask(id);
         model.addAttribute("id",id);
 
-        return getTasks(model);
+        return getTasks(1,model);
     }
 
     @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
@@ -90,7 +87,7 @@ public class HibernateController {
         Task task=hibernateService.getTask(id);
         hibernateService.markDone(task);
 
-        return getTasks(model);
+        return getTasks(1,model);
     }
 
     @RequestMapping (value = "/edit_task", method = RequestMethod.GET)
@@ -108,6 +105,6 @@ public class HibernateController {
         hibernateService.editTask(task);
         model.addAttribute("id", id);
 
-        return getTasks(model);
+        return getTasks(1,model);
     }
 }

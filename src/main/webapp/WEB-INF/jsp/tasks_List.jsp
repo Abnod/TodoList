@@ -10,7 +10,7 @@
 <body>
 <h1>TODO List</h1>
 <c:url var="addUrl" value="/add_task" />
-<c:url var="mainListUrl" value="/" />
+<c:url var="mainListUrl" value="/tasks_List" />
 <c:url var="doneListUrl" value="/tasks_List_Completed" />
 <c:url var="unDoneListUrl" value="/tasks_List_Active" />
 <p><a href="${mainListUrl}">All</a> | <a href="${doneListUrl}">Completed</a> | <a href="${unDoneListUrl}">Active</a></p>
@@ -18,7 +18,7 @@
     <thead style="background:#d49f57">
     <tr>
         <th>Task</th>
-        <th>Completed</th>
+        <th>State</th>
         <th colspan="3"></th>
     </tr>
     </thead>
@@ -50,6 +50,19 @@
 <c:if test="${empty tasks}">
     <p>There are currently no tasks in the list.</p>
 </c:if>
+<c:forEach begin="1" end="${pages}" step="1" varStatus="i">
+    <c:choose>
+        <c:when test="${page == i.index}">
+            <span>${i.index}</span>
+        </c:when>
+        <c:otherwise>
+            <c:url var="url" value="/tasks_List">
+                <c:param name="page" value="${i.index}"/>
+            </c:url>
+            <a href='<c:out value="${url}"/>'>${i.index}</a>
+        </c:otherwise>
+    </c:choose>
+</c:forEach>
 <p><a href="${addUrl}">Add new task</a></p>
 </body>
 </html>

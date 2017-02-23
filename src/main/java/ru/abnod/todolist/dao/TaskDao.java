@@ -8,9 +8,14 @@ public interface TaskDao {
 
     void createTask(Task task);
     void deleteTask(int id);
-    List<Task> getTasks();
+    List<Task> getTasks(int pageNumber);
+    List<Task> getCompletedTasks(int pageNumber);
+    List<Task> getActiveTasks(int pageNumber);
     void editTask(Task task);
     void markDone(Task task);
     Task getTask(int id);
+    int getPages();
+    int getActivePages();
+    int getCompletedPages();
 
 }

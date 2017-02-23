@@ -56,6 +56,19 @@
 <c:if test="${empty tasks}">
     <p>There are currently no tasks in the list.</p>
 </c:if>
+<c:forEach begin="1" end="${pages}" step="1" varStatus="i">
+    <c:choose>
+        <c:when test="${page == i.index}">
+            <span>${i.index}</span>
+        </c:when>
+        <c:otherwise>
+            <c:url var="url" value="/tasks_List_Completed">
+                <c:param name="page" value="${i.index}"/>
+            </c:url>
+            <a href='<c:out value="${url}"/>'>${i.index}</a>
+        </c:otherwise>
+    </c:choose>
+</c:forEach>
 <p><a href="${addUrl}">Add new task</a></p>
 </body>
 </html>
