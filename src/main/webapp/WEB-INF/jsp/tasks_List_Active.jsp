@@ -15,8 +15,8 @@
 </head>
 <body>
 <h1>TODO List</h1>
-<c:url var="addUrl" value="/add_task" />
-<c:url var="mainListUrl" value="/" />
+<c:url var="addUrl" value="/add_task?page=${pages}" />
+<c:url var="mainListUrl" value="/tasks_List" />
 <c:url var="doneListUrl" value="/tasks_List_Completed" />
 <c:url var="unDoneListUrl" value="/tasks_List_Active" />
 <p><a href="${mainListUrl}">All</a> | <a href="${doneListUrl}">Completed</a> | <a href="${unDoneListUrl}">Active</a></p>
@@ -30,13 +30,10 @@
     </thead>
     <tbody>
     <c:forEach items="${tasks}" var="task">
-        <c:url var="setDoneUrl" value="/complete_task?id=${task.id}" />
-        <c:url var="editUrl" value="/edit_task?id=${task.id}" />
-        <c:url var="deleteUrl" value="/delete_task?id=${task.id}" />
+        <c:url var="setDoneUrl" value="/complete_task?id=${task.id}&page=${page}&sr=ac" />
+        <c:url var="editUrl" value="/edit_task?id=${task.id}&page=${page}&sr=ac" />
+        <c:url var="deleteUrl" value="/delete_task?id=${task.id}&page=${page}&sr=ac" />
         <tr>
-            <c:url var="setDoneUrl" value="/complete_task?id=${task.id}" />
-            <c:url var="editUrl" value="/edit_task?id=${task.id}" />
-            <c:url var="deleteUrl" value="/delete_task?id=${task.id}" />
             <td height="50px" width="500px"><c:out value="${task.task}" /></td>
             <td height="50px" width="100px">
                 <c:choose>

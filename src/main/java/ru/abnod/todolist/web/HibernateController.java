@@ -10,7 +10,6 @@ import ru.abnod.todolist.model.Task;
 import ru.abnod.todolist.service.HibernateService;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -57,54 +56,79 @@ public class HibernateController {
     }
 
     @RequestMapping (value = "/add_task", method = RequestMethod.GET)
-    public String getAdd(Model model)
+    public String getAdd(@RequestParam(required = false) Integer page, @RequestParam(required = false) String sr, Model model)
     {
         model.addAttribute("taskAttribute", new Task());
-
         return "add_task";
     }
 
     @RequestMapping (value = "/add_task", method = RequestMethod.POST)
-    public String add(@ModelAttribute("taskAttribute") Task task, Model model)
+    public String add(@ModelAttribute("taskAttribute") Task task, @RequestParam(required = false) Integer page,
+                      @RequestParam(required = false) String sr, Model model)
     {
         hibernateService.createTask(task);
+        int pages=(int)Math.ceil(hibernateService.getPages()/5.0);
 
-        return getTasks(1,model);
+        return getTasks(pages,model);
     }
 
     @RequestMapping (value = "/delete_task", method = RequestMethod.GET)
-    public String deleteTask(@RequestParam(value = "id") int id, Model model)
+    public String deleteTask(@RequestParam(value = "id") int id, @RequestParam(required = false) Integer page,
+                             @RequestParam(required = false) String sr, Model model)
     {
         hibernateService.deleteTask(id);
         model.addAttribute("id",id);
 
-        return getTasks(1,model);
+        if(!(sr==null) && sr.equals("ac")){
+            int pages=(int)Math.ceil(hibernateService.getActivePages()/5.0);
+            if(page>pages){page=pages;}
+        } else if(!(sr==null) && sr.equals("co")){
+            int pages=(int)Math.ceil(hibernateService.getCompletedPages()/5.0);
+            if(page>pages){page=pages;}
+        } else {
+            int pages=(int)Math.ceil(hibernateService.getPages()/5.0);
+            if(page>pages){page=pages;}
+        }
+
+        return getRedirect(page, sr, model);
     }
 
     @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
-    public String setCompleted(@RequestParam (value = "id") Integer id, Model model)
+    public String setCompleted(@RequestParam (value = "id") Integer id, @RequestParam(required = false) Integer page,
+                               @RequestParam(required = false) String sr, Model model)
     {
         Task task=hibernateService.getTask(id);
         hibernateService.markDone(task);
 
-        return getTasks(1,model);
+        return getRedirect(page, sr, model);
     }
 
     @RequestMapping (value = "/edit_task", method = RequestMethod.GET)
-    public String getEdit(@RequestParam(value = "id") int id, Model model)
+    public String getEdit(@RequestParam(value = "id") int id, @RequestParam(required = false) Integer page,
+                          @RequestParam(required = false) String sr, Model model)
     {
         model.addAttribute("taskAttribute", hibernateService.getTask(id));
-
+        model.addAttribute("page", page);
+        model.addAttribute("sr", sr);
         return "edit_task";
     }
 
     @RequestMapping (value = "/edit_task", method = RequestMethod.POST)
-    public String saveEdit(@ModelAttribute ("taskAttribute") Task task, @RequestParam (value = "id") int id, Model model)
+    public String saveEdit(@ModelAttribute ("taskAttribute") Task task, @RequestParam (value = "id") int id,
+                           @RequestParam(required = false) Integer page, @RequestParam(required = false) String sr, Model model)
     {
         task.setId(id);
         hibernateService.editTask(task);
         model.addAttribute("id", id);
 
-        return getTasks(1,model);
+        return getRedirect(page, sr, model);
+    }
+
+    private String getRedirect(Integer page, String sr, Model model) {
+        if(!(sr==null) && sr.equals("ac")){
+            return getActive(page, model);
+        } else if(!(sr==null) && sr.equals("co")){
+            return getCompleted(page, model);
+        } else return getTasks(page,model);
     }
 }

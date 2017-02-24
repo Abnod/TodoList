@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "test")
+@org.hibernate.annotations.Entity(
+        dynamicUpdate = true
+)
 public class Task implements Serializable{
 
     @Id

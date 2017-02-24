@@ -15,7 +15,7 @@
 </head>
 <body>
 <h1>Edit Task</h1>
-<c:url var="saveUrl" value="/edit_task?id=${taskAttribute.id}" />
+<c:url var="saveUrl" value="/edit_task?id=${taskAttribute.id}&page=${page}&sr=${sr}" />
 <form:form modelAttribute="taskAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
