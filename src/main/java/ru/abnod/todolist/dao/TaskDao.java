@@ -13,6 +13,7 @@ public interface TaskDao {
     List<Task> getActiveTasks(int pageNumber);
     void editTask(Task task);
     void markDone(Task task);
+    void markUndone(Task task);
     Task getTask(int id);
     int getPages();
     int getActivePages();

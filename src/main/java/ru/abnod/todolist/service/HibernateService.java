@@ -50,6 +50,9 @@ public class HibernateService {
     public void markDone(Task task){taskDao.markDone(task);}
 
     @Transactional
+    public void markUndone(Task task){taskDao.markUndone(task);}
+
+    @Transactional
     public Task getTask(int id){return taskDao.getTask(id);}
 
     @Transactional

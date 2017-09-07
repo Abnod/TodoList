@@ -2,10 +2,7 @@ package ru.abnod.todolist.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.abnod.todolist.model.Task;
 import ru.abnod.todolist.service.HibernateService;
 
@@ -31,18 +28,6 @@ public class HibernateController {
         return "tasks_List";
     }
 
-    @RequestMapping (value = "/tasks_List_Completed", method = RequestMethod.GET)
-    public String getCompleted(@RequestParam(required = false) Integer page, Model model){
-        int pages=(int)Math.ceil(hibernateService.getCompletedPages()/5.0);
-        if(page==null || page < 1 || page > pages) page = 1;
-        List<Task>sorted=hibernateService.getCompletedTasks(page);
-        model.addAttribute("pages",pages);
-        model.addAttribute("tasks",sorted);
-        model.addAttribute("page", page);
-
-        return "tasks_List_Completed";
-    }
-
     @RequestMapping (value = "/tasks_List_Active", method = RequestMethod.GET)
     public String getActive(@RequestParam(required = false) Integer page, Model model){
         int pages=(int)Math.ceil(hibernateService.getActivePages()/5.0);
@@ -55,21 +40,27 @@ public class HibernateController {
         return "tasks_List_Active";
     }
 
-    @RequestMapping (value = "/add_task", method = RequestMethod.GET)
-    public String getAdd(@RequestParam(required = false) Integer page, @RequestParam(required = false) String sr, Model model)
-    {
-        model.addAttribute("taskAttribute", new Task());
-        return "add_task";
+
+    @RequestMapping (value = "/tasks_List_Completed", method = RequestMethod.GET)
+    public String getCompleted(@RequestParam(required = false) Integer page, Model model){
+        int pages=(int)Math.ceil(hibernateService.getCompletedPages()/5.0);
+        if(page==null || page < 1 || page > pages) page = 1;
+        List<Task>sorted=hibernateService.getCompletedTasks(page);
+        model.addAttribute("pages",pages);
+        model.addAttribute("tasks",sorted);
+        model.addAttribute("page", page);
+
+        return "tasks_List_Completed";
     }
 
     @RequestMapping (value = "/add_task", method = RequestMethod.POST)
-    public String add(@ModelAttribute("taskAttribute") Task task, @RequestParam(required = false) Integer page,
+    public String getAdd(@RequestParam(value="name", required = false) String name, @RequestParam(required = false) Integer page,
                       @RequestParam(required = false) String sr, Model model)
     {
-        hibernateService.createTask(task);
+        hibernateService.createTask(new Task(name, 0));
         int pages=(int)Math.ceil(hibernateService.getPages()/5.0);
 
-        return getTasks(pages,model);
+        return getRedirect(pages, sr, model);
     }
 
     @RequestMapping (value = "/delete_task", method = RequestMethod.GET)
@@ -94,12 +85,14 @@ public class HibernateController {
     }
 
     @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
-    public String setCompleted(@RequestParam (value = "id") Integer id, @RequestParam(required = false) Integer page,
-                               @RequestParam(required = false) String sr, Model model)
+    public String setCompleted(@RequestParam (value = "id") Integer id, @RequestParam(value = "page", required = false) Integer page,
+                               @RequestParam(value = "sr", required = false) String sr, Model model)
     {
         Task task=hibernateService.getTask(id);
-        hibernateService.markDone(task);
-
+        System.out.println(task.getDone());
+        if (task.getDone()==0){
+            hibernateService.markDone(task);
+        } else {hibernateService.markUndone(task);}
         return getRedirect(page, sr, model);
     }
 
@@ -126,9 +119,9 @@ public class HibernateController {
 
     private String getRedirect(Integer page, String sr, Model model) {
         if(!(sr==null) && sr.equals("ac")){
-            return getActive(page, model);
+            return "redirect: /tasks_List_Active?page="+page;
         } else if(!(sr==null) && sr.equals("co")){
-            return getCompleted(page, model);
-        } else return getTasks(page,model);
+            return "redirect: /tasks_List_Completed?page="+page;
+        } else return "redirect: /tasks_List?page="+page;
     }
 }

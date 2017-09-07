@@ -47,6 +47,10 @@ public class HibernateTaskDao implements TaskDao {
         task.setDone(1);
         editTask(task);
     }
+    public void markUndone(Task task) {
+        task.setDone(0);
+        editTask(task);
+    }
 
     public int getPages(){
         return ((Long)sessionFactory.getCurrentSession().createQuery("select count(*) from Task").uniqueResult()).intValue();
