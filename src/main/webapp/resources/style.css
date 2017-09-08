@@ -136,7 +136,7 @@ main{
     letter-spacing: 2px;
     font-weight: bold;
     color: ghostwhite;
-    transition:  .4s linear;
+    transition:  .3s linear;
 }
 
 .task_button img{
@@ -167,7 +167,7 @@ main{
 .task_button_edit_text{
     height: 100%;
     line-height: 80px;
-    transition:  .4s linear;
+    transition:  .3s linear;
 }
 
 .task_button_edit_text:hover,
