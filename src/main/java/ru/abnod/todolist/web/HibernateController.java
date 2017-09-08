@@ -63,12 +63,11 @@ public class HibernateController {
         return getRedirect(pages, sr, model);
     }
 
-    @RequestMapping (value = "/delete_task", method = RequestMethod.GET)
-    public String deleteTask(@RequestParam(value = "id") int id, @RequestParam(required = false) Integer page,
-                             @RequestParam(required = false) String sr, Model model)
+    @RequestMapping (value = "/delete_task", method = RequestMethod.POST)
+    public String deleteTask(@RequestParam(value = "id") int id, @RequestParam(value = "page", required = false) Integer page,
+                             @RequestParam(value = "sr", required = false) String sr, Model model)
     {
         hibernateService.deleteTask(id);
-        model.addAttribute("id",id);
 
         if(!(sr==null) && sr.equals("ac")){
             int pages=(int)Math.ceil(hibernateService.getActivePages()/5.0);
@@ -84,7 +83,7 @@ public class HibernateController {
         return getRedirect(page, sr, model);
     }
 
-    @RequestMapping (value = "/complete_task", method = RequestMethod.GET)
+    @RequestMapping (value = "/complete_task", method = RequestMethod.POST)
     public String setCompleted(@RequestParam (value = "id") Integer id, @RequestParam(value = "page", required = false) Integer page,
                                @RequestParam(value = "sr", required = false) String sr, Model model)
     {
@@ -96,23 +95,15 @@ public class HibernateController {
         return getRedirect(page, sr, model);
     }
 
-    @RequestMapping (value = "/edit_task", method = RequestMethod.GET)
-    public String getEdit(@RequestParam(value = "id") int id, @RequestParam(required = false) Integer page,
-                          @RequestParam(required = false) String sr, Model model)
-    {
-        model.addAttribute("taskAttribute", hibernateService.getTask(id));
-        model.addAttribute("page", page);
-        model.addAttribute("sr", sr);
-        return "edit_task";
-    }
-
     @RequestMapping (value = "/edit_task", method = RequestMethod.POST)
-    public String saveEdit(@ModelAttribute ("taskAttribute") Task task, @RequestParam (value = "id") int id,
-                           @RequestParam(required = false) Integer page, @RequestParam(required = false) String sr, Model model)
+    public String saveEdit( @RequestParam(value = "edit_text") String name, @RequestParam (value = "id") int id,
+                            @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "sr", required = false) String sr,
+                            Model model)
     {
+        Task task = hibernateService.getTask(id);
         task.setId(id);
+        task.setTask(name);
         hibernateService.editTask(task);
-        model.addAttribute("id", id);
 
         return getRedirect(page, sr, model);
     }

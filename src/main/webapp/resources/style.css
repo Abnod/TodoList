@@ -13,6 +13,9 @@ body{
     max-width: 960px;
     min-width: 480px;
     margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .header{
     background: linear-gradient(rgb(70,70,70), rgb(120,120,120));
@@ -51,7 +54,7 @@ body{
     box-shadow: inset 0 2px 10px 1px rgba(0,0,0,.3), inset 0 0 0 60px rgba(0,0,0,.3), 0 1px rgba(255,255,255,.08);
 }
 
-.menu .whiteline{
+.whiteline{
     border: ridge 1px ghostwhite;
 }
 
@@ -59,12 +62,12 @@ body{
     box-shadow: inset 0 1px 3px 1px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
 }
 
-.task_table{
-    background-color: burlywood;
+main{
+    flex: 1 0 auto;
+    background-color: sienna;
 }
 
 .task_header{
-    background-color: sienna;
     height: 30px;
     font-family: "Roboto Slab", sans-serif;
     font-weight: 700;
@@ -88,34 +91,52 @@ body{
 }
 .task_block{
     padding: 5px;
+    background: linear-gradient(rgb(70,70,70), rgb(120,120,120));
 }
 
 .task_row{
+    position: relative;
     display: flex;
     justify-content: flex-end;
     border-radius: 5px;
-    background-color: lightgrey;
-    margin: 5px;
-    padding: 5px;
+    margin: 5px 5px 10px 5px;
 }
 
-.task_button{
-    width: 80px;
-    min-width: 80px;
-    height: 40px;
-    min-height: 40px;
-    text-align: center;
-    background-color: darkgray;
+.task_task{
+    display: flex;
+    flex-grow: 1;
+    word-wrap: break-word;
+    padding: 5px;
+    background-color: ghostwhite;
     border-radius: 6px;
-    margin: 5px;
-    padding: 5px 10px;
+    vertical-align: middle;
+
+}
+
+.task_task:read-only{
+    background-color: lightgray;
+}
+
+.task_task p{
+    margin: auto 0;
+}
+
+.task_button, .task_button_save{
+    width: 102px;
+    min-width: 102px;
+    height: 80px;
+    min-height: 52px;
+    text-align: center;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
     text-decoration: none;
     font-family: "Roboto Slab", sans-serif;
     font-size: 16px;
     letter-spacing: 2px;
     font-weight: bold;
     color: ghostwhite;
-    border: solid darkgray 1px;
+    transition:  .4s linear;
 }
 
 .task_button img{
@@ -123,13 +144,72 @@ body{
     display: inline-block;
 }
 
-.task_task{
-    flex-grow: 1;
-    word-wrap: normal;
+.task_button_save{
+    background: linear-gradient(rgb(70,70,70), rgb(120,120,120));
 }
+.task_button_edit{
+    width: 102px;
+    min-width: 102px;
+    height: 80px;
+    min-height: 80px;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: ghostwhite;
+    position: relative;
+    transition:  .4s linear;
+}
+
+.task_button_edit_text{
+    height: 100%;
+    line-height: 80px;
+    transition:  .4s linear;
+}
+
+.task_button_edit_text:hover,
+.task_button:hover,
+.task_button_save:hover{
+    box-shadow: inset 0 1px 10px 5px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
+}
+
+.task_button_edit_text:active,
+.task_button:active,
+.task_button_save:active{
+    box-shadow: inset 0 1px 10px 10px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
+    background-color: #32A932;
+}
+
+.edit_window{
+    position: absolute;
+    width: 102px;
+    height: 80px;
+    display: none;
+    right: 102%;
+    bottom: 0;
+    text-align: left;
+    justify-content: flex-end;
+}
+
+
+.edit_text{
+    border: none;
+    outline: none;
+    background: ghostwhite;
+    height: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    flex-grow: 1;
+
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
 .button_header{
     display: block;
-    background-color: sienna;
     padding: 15px 5px;
 }
 
@@ -153,7 +233,7 @@ body{
     color: black;
 }
 
-.page_button:hover{
+.page_button:active{
     box-shadow: inset 0 1px 3px 1px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
     background-color: #32A932;
     color: ghostwhite;
@@ -192,14 +272,25 @@ body{
     border: solid darkgray 1px;
 }
 
-.add_button:hover{
+.add_button:active{
     box-shadow: inset 0 1px 3px 1px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
     background-color: #32A932;
 }
+
+.add_button:hover{
+    background-color: #32A932;
+}
+
 .add .reset{
     background-color: indianred;
 }
+
+.add .reset:hover{
+    background-color: #E26060;
+}
+
 .footer{
+    flex: 0 0 auto;
     background: linear-gradient(rgb(70,70,70), rgb(120,120,120));
     padding: 20px 0;
     color: ghostwhite;
