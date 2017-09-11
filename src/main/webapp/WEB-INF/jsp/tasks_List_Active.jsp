@@ -40,6 +40,7 @@
                             <input name="id" value="${task.id}" hidden>
                             <input name="page" value="${page}" hidden>
                             <input name="sr" value="ac" hidden>
+                            <button formaction="${editUrl}" formmethod="POST" class="task_button_save_on_enter_key" hidden>Save on enter</button>
                             <input type="text" class="task_task" id="task_task_${task.id}" value="${task.task}" name="edit_text" readonly>
                             <button formaction="${setDoneUrl}" formmethod="POST" class="task_button">
                                 <c:if test="${task.done==1}">
@@ -53,11 +54,11 @@
                             <div class="task_button_edit">
                                 <div class="task_button_edit_text" onclick="toggle(${task.id})">Edit</div>
                                 <div class="edit_window" id="edit_window_${task.id}">
-                                    <button type="submit" formaction="${editUrl}" formmethod="POST" class="task_button_save">Save</button>
+                                    <button formaction="${editUrl}" formmethod="POST" class="task_button_save">Save</button>
                                 </div>
                             </div>
                             <div class="whiteline"></div>
-                            <button type="submit" formaction="${deleteUrl}" formmethod="POST" class="task_button">Delete</button>
+                            <button formaction="${deleteUrl}" formmethod="POST" class="task_button">Delete</button>
                         </form>
                     </c:forEach>
                     <script>
