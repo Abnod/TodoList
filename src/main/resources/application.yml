@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    initialization-mode: always
+    url: jdbc:mysql://localhost:3306/todolist?useUnicode=true&characterEncoding=utf8&useCursorFetch=true&defaultFetchSize=-2147483648
+    username: aje
+    password: aje
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
