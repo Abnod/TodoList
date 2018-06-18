@@ -7,7 +7,7 @@ public class BcryptGenerator {
 
         int i = 0;
         while (i < 5) {
-            String password = "user2";
+            String password = "user1";
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String hashedPassword = passwordEncoder.encode(password);
 

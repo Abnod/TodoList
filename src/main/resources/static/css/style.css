@@ -1,0 +1,299 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../images/bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.mainWrapper {
+    max-width: 960px;
+    min-width: 480px;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+}
+
+.formWrapper {
+    background-color: white;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+    min-height: 550px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 2px;
+    padding: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnInputSize {
+    height: 33px;
+}
+
+.btnDivSize {
+    height: 13px;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.brown {
+    color: white;
+    background-color: #665851;
+}
+
+.white {
+    color: #888;
+    background-color: white;
+}
+
+/*login styles*/
+.loginWrapper {
+    width: 320px;
+    height: 276px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -138px 0 0 -160px;
+}
+
+.loginMessage {
+    background-color: #665851;
+    border-radius: 5px 5px 0 0;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 13px;
+    line-height: 62px;
+    height: 62px;
+    margin-bottom: 19px;
+}
+
+.formWrapper label {
+    font-weight: 700;
+    font-size: .8em;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 2em;
+}
+
+.formWrapper input:not([type="submit"]) {
+    margin-bottom: 20px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: .9em;
+    color: #888;
+}
+
+/*main styles*/
+.mainHead {
+    background-color: #665851;
+    border-radius: 5px 5px 0 0;
+    letter-spacing: 1px;
+    font-size: 13px;
+    height: 80px;
+    margin-bottom: 19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainHead a,
+.mainHead input {
+    margin: 0 20px;
+}
+
+#media_list {
+    flex: 1 0;
+    width: 98%;
+    margin: 0 auto;
+    border-spacing: 0;
+
+}
+
+#tableHeader {
+    height: 55px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #888;
+    line-height: 55px;
+}
+
+.tableH {
+    height: 40px;
+    color: white;
+    background-color: #665851;
+}
+
+.media_row {
+    height: 30px;
+}
+
+.media_row_cell {
+    min-width: 200px;
+    min-height: 30px;
+    border: solid 1px;
+}
+
+.table_button {
+    width: 100px;
+    height: 30px;
+    color: white;
+}
+
+.red {
+    background-color: crimson;
+}
+
+.blue {
+    background-color: dodgerblue;
+}
+
+.grey {
+    background-color: #888888;
+}
+
+#backToAll {
+    padding: 13px;
+    text-align: left;
+}
+
+#adb {
+    padding: 12px;
+    height: 15px;
+    text-align: left;
+}
+
+#pagination {
+    padding: 12px;
+}
+
+.mar10 {
+    margin: 0 5px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#prompt-form {
+    display: inline-block;
+    padding: 5px;
+    width: 300px;
+    min-height: 100px;
+    border: 1px solid black;
+    background: white;
+    vertical-align: middle;
+}
+
+#prompt-message {
+    margin-bottom: 15px;
+}
+
+#prompt-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#prompt-form-container:before {
+    display: inline-block;
+    height: 100%;
+    content: '';
+    vertical-align: middle;
+}
+
+#cover-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9000;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: 0.3;
+}
+
+input[readonly] {
+    background-color: #aaaaaa;
+    color: white !important;
+}
+
+.info_row {
+    display: flex;
+}
+
+.info_row label {
+    text-align: left;
+    flex: 1 0;
+}
+
+.button_row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}

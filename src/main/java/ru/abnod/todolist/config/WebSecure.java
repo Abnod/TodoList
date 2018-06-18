@@ -27,8 +27,8 @@ public class WebSecure extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/", true).permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/login").permitAll();
-//                .and().csrf().disable();
+                .logout().permitAll()
+                .and().csrf().disable();
     }
 
     @Bean

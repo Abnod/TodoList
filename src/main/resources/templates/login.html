@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page - Todo List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="mainWrapper">
+    <div class="formWrapper loginWrapper">
+        <div class="loginMessage">
+            <span th:if="${param.error}">
+                Invalid username and/or password.
+            </span>
+            <span th:if="${param.logout}">
+                You have been logged out.
+            </span>
+        </div>
+        <form th:action="@{/login}" method="post">
+            <label>Login</label>
+            <br/>
+            <input type="text" name="username"/>
+            <br/>
+            <label>Password</label>
+            <br/>
+            <input type="password" name="password"/>
+            <br/>
+            <button class="btn btnInputSize brown" type="submit">Sign In</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

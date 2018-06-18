@@ -24,10 +24,13 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByLogin(login);
+        if (user == null){
+            user = new User(Long.MIN_VALUE, "null", "null",false);
+        }
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword_hash(), getAuthorities(user));
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities(User user) {
+    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
         List<GrantedAuthority> authList = new ArrayList<>();
         String role;
         if (user.isAdmin()) {
