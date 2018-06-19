@@ -10,10 +10,10 @@
     <div class="formWrapper loginWrapper">
         <div class="loginMessage">
             <span th:if="${param.error}">
-                Invalid username and/or password.
+                Invalid username and/or password
             </span>
             <span th:if="${param.logout}">
-                You have been logged out.
+                You have been logged out
             </span>
         </div>
         <form th:action="@{/login}" method="post">
