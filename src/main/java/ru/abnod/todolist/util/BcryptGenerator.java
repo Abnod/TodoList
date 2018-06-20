@@ -3,8 +3,8 @@ package ru.abnod.todolist.util;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class BcryptGenerator {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         int i = 0;
         while (i < 5) {
             String password = "user1";
@@ -14,6 +14,5 @@ public class BcryptGenerator {
             System.out.println(hashedPassword);
             i++;
         }
-
     }
 }

@@ -8,7 +8,7 @@
 <body>
 <div id="mainWrapper" class="mainWrapper">
     <div id="login-wrap" class="formWrapper login-wrap">
-        <div class="loginMessage">
+        <div id="loginError" class="loginMessage">
                 <span th:if="${param.error}">
                     Invalid username/password
                 </span>
@@ -29,22 +29,15 @@
         </form>
     </div>
     <div id="register-wrap" class="formWrapper register-wrap">
-        <div class="loginMessage">
-                <span th:if="${param.error}">
-                    Invalid username and/or password
-                </span>
-            <span th:if="${param.logout}">
-                    You have been logged out
-                </span>
-        </div>
+        <div id="registerError" class="loginMessage"></div>
         <div class="form-title">Sign Up</div>
-        <form id="register-form" class="register-form" th:action="@{/register}" method="post">
+        <form id="register-form" class="register-form" method="post">
             <label>Username</label>
             <input type="text" name="username" required/>
             <label>Password</label>
             <input id="password-reg" type="password" onkeyup='validate();' name="password" required/>
             <label>Confirm Password</label>
-            <input id="password-confirm-reg" type="password" onkeyup='validate();' name="verify password" required/>
+            <input id="password-confirm-reg" type="password" onkeyup='validate();' name="passwordConfirm" required/>
             <div class="group">
                 <button id="back-to-login-button" class="btn btnInputSize brown" type="button">Back</button>
                 <button class="btn btnInputSize brown" type="submit">Register</button>

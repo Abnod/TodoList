@@ -1,4 +1,4 @@
-package ru.abnod.todolist;
+package ru.abnod.todolist.controller;
 
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
