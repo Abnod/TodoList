@@ -1,4 +1,4 @@
-package ru.abnod.todolist.model;
+package ru.abnod.todolist.bean;
 
 import lombok.Data;
 
@@ -6,11 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class UserRegisterBean{
+public class UserBean {
 
     @NotNull
     @NotEmpty
-    private final String username;
+    private final String name;
     @NotNull
     @NotEmpty
     private final String password;

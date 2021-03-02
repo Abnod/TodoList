@@ -1,11 +1,11 @@
-package ru.abnod.todolist;
+package ru.abnod.todolist.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.abnod.todolist.config.WebSecure;
-import ru.abnod.todolist.model.User;
-import ru.abnod.todolist.model.UserRegisterBean;
+import ru.abnod.todolist.db.User;
+import ru.abnod.todolist.bean.UserBean;
 import ru.abnod.todolist.util.UserDetailService;
 
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class RegisterService {
     private final WebSecure webSecure;
 
 
-    public Map<String, Object> register(UserRegisterBean userBean) {
+    public Map<String, Object> register(UserBean userBean) {
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
 
@@ -29,7 +29,11 @@ public class RegisterService {
                 User user = null;
                 try {
                     String password = webSecure.encodePassword(userBean.getPassword());
-                    user = userDetailService.create(new User(userBean.getUsername(), password, false));
+                    User newUser = new User();
+                    newUser.setName(userBean.getName());
+                    newUser.setPassword_hash(password);
+                    newUser.setAdmin(false);
+                    user = userDetailService.create(newUser);
                 } catch (Exception e) {
                     log.error("Account creation failed with exception: {}", e.getMessage());
                     resultMap.put("message", "account already exist");

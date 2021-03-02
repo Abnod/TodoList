@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.abnod.todolist.model.User;
+import ru.abnod.todolist.db.User;
 import ru.abnod.todolist.util.UserDetailService;
 
 @Configuration

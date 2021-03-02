@@ -1,4 +1,4 @@
-package ru.abnod.todolist.model;
+package ru.abnod.todolist.db;
 
 import lombok.Data;
 
@@ -19,10 +19,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "login", nullable = false)
-    private final String login;
+    private String name;
+
     @Column(name = "password_hash", nullable = false)
-    private final String password_hash;
+    private String password_hash;
+
     @Column(name = "admin", nullable = false)
-    private final boolean admin;
+    private boolean admin;
 }
