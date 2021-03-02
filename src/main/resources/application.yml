@@ -1,10 +1,15 @@
 spring:
   datasource:
-    initialization-mode: always
-    url: jdbc:mysql://localhost:3306/todolist?useUnicode=true&characterEncoding=utf8&useCursorFetch=true&defaultFetchSize=-2147483648
+    url: jdbc:mysql://localhost:3306/todolist?useUnicode=true&characterEncoding=utf8&useCursorFetch=true&defaultFetchSize=-2147483648&useSSL=false
     username: aje
     password: aje
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
+      use-new-id-generator-mappings: false
+  liquibase:
+    change-log: classpath:liquibase/changeLog.xml
+    url: jdbc:mysql://localhost:3306/todolist?createDatabaseIfNotExist=true&useSSL=false
+    user: aje
+    password: aje
